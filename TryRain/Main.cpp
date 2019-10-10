@@ -10,11 +10,11 @@ const int dropsNumber = 100;
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(SCREEN_X, SCREEN_Y), "Rain",Style::None);
+	RenderWindow window(VideoMode(SCREEN_X, SCREEN_Y), "Rain",Style::None);
 
 	//create storm
 	Rain *storm = new Rain[dropsNumber];
-	for (int i = 0; i < dropsNumber; ++i) {
+	for (int i = 0; i != dropsNumber; ++i) {
 		storm[i].Init(SCREEN_X, i+1);
 	}
 	Flash flash(SCREEN_X,SCREEN_Y);
@@ -24,10 +24,10 @@ int main()
 
 	while (window.isOpen())
 	{
-		sf::Event event;
+		Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == Event::Closed)
 				window.close();
 			if (event.key.code == Keyboard::Escape) {
 				window.close();
@@ -40,14 +40,14 @@ int main()
 		//update Flash
 		flash.Update(totalTime);
 		//update storm
-		for (int i = 0; i < dropsNumber; ++i) {
+		for (int i = 0; i != dropsNumber; ++i) {
 			storm[i].Update(deltaTime.asSeconds(), SCREEN_Y,SCREEN_X,i+1);
 		}
 		//endUpdate
 		//Draw
 		window.clear(Color::Blue);
 		//draw the storm
-		for (int i = 0; i < dropsNumber; ++i) {
+		for (int i = 0; i != dropsNumber; ++i) {
 			window.draw(storm[i].getShape());
 		}
 		if (flash.getActive()) {

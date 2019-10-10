@@ -7,7 +7,7 @@ class Rain {
 public:
 	Rain();
 	void Update(float enlapsedTime, float screenY, float screenX, int seed);
-	void Init( float screenX,int seed);
+	void Init( int screenX,int seed);
 	void setPosition(Vector2f position);
 	void setSpeed(float speed);
 	void setShapeColor(Color color);
