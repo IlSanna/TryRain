@@ -5,7 +5,7 @@ using namespace sf;
 
 const int SCREEN_X = 400;
 const int SCREEN_Y = 400;
-const int dropsNumber = 20;
+const int dropsNumber = 50;
 
 int main()
 {

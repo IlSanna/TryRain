@@ -19,5 +19,5 @@ private:
 	Vector2f m_position;
 	RectangleShape m_shape;
 	float m_speed = 0;
-	const float m_dropLenght = 50.0f;
+	const float m_dropLenght = 40.0f;
 };
