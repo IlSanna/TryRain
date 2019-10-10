@@ -1,7 +1,7 @@
 #include "Rain.h"
 //constructor, give a value to position and size
 Rain::Rain() : m_position(Vector2f(-100,-100)) {//costruire con random speed
-	m_shape.setSize(Vector2f(3, m_dropLenght));
+	m_shape.setSize(Vector2f(1.5f, m_dropLenght));
 }
 /*initialize each drops with randon:
 -position x;
@@ -10,7 +10,7 @@ Rain::Rain() : m_position(Vector2f(-100,-100)) {//costruire con random speed
 */
 void Rain::Init( float screenX, int seed) {
 	srand((int)time(0) * seed);
-	m_speed = (rand() % 300)+150;//between 150 and 450
+	m_speed = (rand() % 300)+300;//between 300 and 600
 	srand((int)time(0) * seed * 2);
 	m_shape.setSize(Vector2f( 3 , m_dropLenght - (rand() % 25)) );//different shapes
 	srand((int)time(0) * seed * 10);//random num

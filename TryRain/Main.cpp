@@ -1,9 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include "Rain.h"
+#include "Flash.h"
 
 using namespace sf;
 
-const int SCREEN_X = 400;
+const int SCREEN_X = 800;
 const int SCREEN_Y = 400;
 const int dropsNumber = 50;
 
@@ -16,8 +17,11 @@ int main()
 	for (int i = 0; i != dropsNumber; ++i) {
 		storm[i].Init(SCREEN_X, i);
 	}
+	Flash flash(SCREEN_X,SCREEN_Y);
 
 	Clock clock;
+	Time totalTime;
+	float timer = 300;
 
 	while (window.isOpen())
 	{
@@ -32,6 +36,21 @@ int main()
 		}
 		//Update
 		Time deltaTime = clock.restart();
+		totalTime += deltaTime;
+		
+		//update Flash
+		if (totalTime.asMilliseconds() > timer ) {
+			srand((int)time(0) * totalTime.asMilliseconds());
+			timer = (rand() % 1500) + 300;
+			if (!flash.getActive()) {
+				flash.setActive(true);
+				totalTime = Time::Zero;
+			}
+			else {
+				flash.setActive(false);
+				totalTime = Time::Zero;
+			}
+		}
 		//update storm
 		for (int i = 0; i != dropsNumber; ++i) {
 			storm[i].Update(deltaTime.asSeconds(), SCREEN_Y,SCREEN_X,i);
@@ -42,6 +61,9 @@ int main()
 		//draw the storm
 		for (int i = 0; i != dropsNumber; ++i) {
 			window.draw(storm[i].getShape());
+		}
+		if (flash.getActive()) {
+			window.draw(flash.getShape());
 		}
 		window.display();
 	}
