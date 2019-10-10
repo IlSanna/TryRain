@@ -6,7 +6,6 @@ using namespace sf;
 
 const int SCREEN_X = 800;
 const int SCREEN_Y = 400;
-const int dropsNumber = 50;
 
 int main()
 {
@@ -14,8 +13,8 @@ int main()
 
 	//create storm
 	Rain *storm = new Rain[dropsNumber];
-	for (int i = 0; i != dropsNumber; ++i) {
-		storm[i].Init(SCREEN_X, i);
+	for (int i = 0; i < dropsNumber; ++i) {
+		storm[i].Init(SCREEN_X, i+1);
 	}
 	Flash flash(SCREEN_X,SCREEN_Y);
 
@@ -52,14 +51,14 @@ int main()
 			}
 		}
 		//update storm
-		for (int i = 0; i != dropsNumber; ++i) {
-			storm[i].Update(deltaTime.asSeconds(), SCREEN_Y,SCREEN_X,i);
+		for (int i = 0; i < dropsNumber; ++i) {
+			storm[i].Update(deltaTime.asSeconds(), SCREEN_Y,SCREEN_X,i+1);
 		}
 		//endUpdate
 		//Draw
 		window.clear(Color::Blue);
 		//draw the storm
-		for (int i = 0; i != dropsNumber; ++i) {
+		for (int i = 0; i < dropsNumber; ++i) {
 			window.draw(storm[i].getShape());
 		}
 		if (flash.getActive()) {
