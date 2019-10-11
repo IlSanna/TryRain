@@ -3,15 +3,15 @@
 
 using namespace sf;
 
-class Blob {
+class Thunder {
 public:
-	Blob();
+	Thunder();
 	Sprite getSprite();
 	void setPosition(float x, float y);
-	void update(float deltaTime);
+	void update();
 private:
 	Texture m_texture;
 	Sprite m_sprite;
 	IntRect m_tile;
-	bool m_active = false;
+	Clock m_clock;
 };

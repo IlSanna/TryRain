@@ -21,7 +21,7 @@
     <ClInclude Include="Flash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blob.h">
+    <ClInclude Include="Thunder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="Flash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Blob.cpp">
+    <ClCompile Include="Thunder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
