@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Rain.h"
 #include "Flash.h"
+#include "Blob.h"
 
 using namespace sf;
 
@@ -22,6 +23,9 @@ int main()
 	Clock clock;
 	Time totalTime;
 
+	Blob blob;
+	blob.setPosition(SCREEN_X / 2, SCREEN_Y / 2);
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -37,6 +41,8 @@ int main()
 		Time deltaTime = clock.restart();
 		totalTime += deltaTime;
 		
+		//update thunder
+		blob.update(totalTime.asSeconds());
 		//update Flash
 		flash.Update(totalTime);
 		//update storm
@@ -46,13 +52,14 @@ int main()
 		//endUpdate
 		//Draw
 		window.clear(Color::Blue);
+		window.draw(blob.getSprite());
 		//draw the storm
-		for (int i = 0; i != dropsNumber; ++i) {
+		/*for (int i = 0; i != dropsNumber; ++i) {
 			window.draw(storm[i].getShape());
 		}
 		if (flash.getActive()) {
 			window.draw(flash.getShape());
-		}
+		}*/
 		window.display();
 	}
 
