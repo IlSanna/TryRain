@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML\Audio.hpp>
 #include "Rain.h"
 #include "Flash.h"
 #include "Thunder.h"
@@ -9,6 +10,7 @@ const int SCREEN_X = 800;
 const int SCREEN_Y = 400;
 const int dropsNumber = 100;
 
+
 int main()
 {
 	RenderWindow window(VideoMode(SCREEN_X, SCREEN_Y), "Rain",Style::None);
@@ -18,6 +20,11 @@ int main()
 	for (int i = 0; i != dropsNumber; ++i) {
 		storm[i].Init(SCREEN_X, i+1);
 	}
+
+	SoundBuffer soundBuffer;
+	Sound soundThunder;
+	soundBuffer.loadFromFile("thunder.wav");
+	soundThunder.setBuffer(soundBuffer);
 	Flash flash(SCREEN_X,SCREEN_Y);
 
 	Clock clock;
@@ -52,14 +59,18 @@ int main()
 		//endUpdate
 		//Draw
 		window.clear(Color::Blue);
-		window.draw(thunder.getSprite());
+		//draw the thunder
+		//window.draw(thunder.getSprite());
 		//draw the storm
-		/*for (int i = 0; i != dropsNumber; ++i) {
+		for (int i = 0; i != dropsNumber; ++i) {
 			window.draw(storm[i].getShape());
 		}
 		if (flash.getActive()) {
+			if (soundThunder.getStatus() != Sound::Playing) {//set to play only once
+				soundThunder.play();
+			}
 			window.draw(flash.getShape());
-		}*/
+		}
 		window.display();
 	}
 
