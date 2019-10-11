@@ -9,12 +9,16 @@ Rain::Rain() : m_position(Vector2f(-100,-100)) {//costruire con random speed
 -speed;
 */
 void Rain::Init( int screenX, int seed) {
-	srand((int)time(0) * seed);
+	//srand((int)time(0) * seed);
 	m_speed = (rand() % 300)+450;//between 450 and 750
-	srand((int)time(0) * seed * 2);
+	//srand((int)time(0) * seed * 2);
 	m_shape.setSize(Vector2f( 3 , m_dropLenght - (rand() % 25)) );//different shapes
-	srand((int)time(0) * seed * 3);//random num
-	m_shape.setPosition((rand() % screenX), -(rand() % 100) );
+	//srand((int)time(0) * seed * 3);//random num
+	//m_shape.setPosition((rand() % screenX), -(rand() % 100) );
+	m_shape.setPosition(randomRange(0,screenX), -randomRange(0,100));
+}
+int Rain::randomRange(int min, int max) {
+	return rand() % (max - min + 1) + min;
 }
 /*update drops positions in time, if the reach the end of the
 screen, reinitialize the drops */
@@ -43,3 +47,5 @@ Vector2f Rain::getPosition() {
 float Rain::getSpeed() {
 	return m_speed;
 }
+
+

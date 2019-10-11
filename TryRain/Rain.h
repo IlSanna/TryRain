@@ -14,7 +14,7 @@ public:
 	RectangleShape getShape();
 	Vector2f getPosition();
 	float getSpeed();
-
+	int randomRange(int min, int max);
 private:
 	Vector2f m_position;
 	RectangleShape m_shape;
