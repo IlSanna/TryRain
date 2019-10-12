@@ -6,12 +6,16 @@ Flash::Flash(int screenX, int screenY) {
 	m_shape.setPosition(screenX/2, screenY/2);
 	m_color.a = 75.0f;
 	m_shape.setFillColor(m_color);
+	m_buffer.loadFromFile("thunder.wav");
+	m_sound.setBuffer(m_buffer);
 }
 void Flash::Update(Time &timeTotal) {
 	if (timeTotal.asMilliseconds() > m_flashTimer ) {
-		srand((int)time(0) * timeTotal.asMilliseconds());
-		m_flashTimer = (rand() % 1500) + 300;
+		m_flashTimer = randomRange(300, 1600);
 		if (!m_isActive) {
+			if (m_sound.getStatus() != Sound::Playing) {
+				m_sound.play();
+			}
 			m_isActive = true;
 			timeTotal = Time::Zero;
 		}
@@ -21,7 +25,9 @@ void Flash::Update(Time &timeTotal) {
 		}
 	}
 }
-
+int Flash::randomRange(int min, int max) {
+	return rand() % (max - min + 1) + min;
+}
 RectangleShape Flash::getShape() {
 	return m_shape;
 }

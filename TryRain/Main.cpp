@@ -21,10 +21,7 @@ int main()
 		storm[i].Init(SCREEN_X, i+1);
 	}
 
-	SoundBuffer soundBuffer;
-	Sound soundThunder;
-	soundBuffer.loadFromFile("thunder.wav");
-	soundThunder.setBuffer(soundBuffer);
+	
 	Flash flash(SCREEN_X,SCREEN_Y);
 
 	Clock clock;
@@ -65,12 +62,7 @@ int main()
 		for (int i = 0; i != dropsNumber; ++i) {
 			window.draw(storm[i].getShape());
 		}
-		if (flash.getActive()) {
-			if (soundThunder.getStatus() != Sound::Playing) {//set to play only once
-				soundThunder.play();
-			}
-			window.draw(flash.getShape());
-		}
+		if (flash.getActive()) { window.draw(flash.getShape()); }
 		window.display();
 	}
 
