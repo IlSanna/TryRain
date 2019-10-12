@@ -14,7 +14,13 @@ const int dropsNumber = 100;
 int main()
 {
 	RenderWindow window(VideoMode(SCREEN_X, SCREEN_Y), "Rain",Style::None);
-
+	//setup audio for the storm
+	SoundBuffer bufferRain;
+	bufferRain.loadFromFile("Audio/rain.ogg");
+	Sound soundRain;
+	soundRain.setBuffer(bufferRain);
+	soundRain.setLoop(true);
+	soundRain.play();
 	//create storm
 	Rain *storm = new Rain[dropsNumber];
 	for (int i = 0; i != dropsNumber; ++i) {
