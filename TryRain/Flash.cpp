@@ -6,7 +6,7 @@ Flash::Flash(int screenX, int screenY) {
 	m_shape.setPosition(screenX/2, screenY/2);
 	m_color.a = 75.0f;
 	m_shape.setFillColor(m_color);
-	m_buffer.loadFromFile("thunder.wav");
+	m_buffer.loadFromFile("Audio/thunder.wav");
 	m_sound.setBuffer(m_buffer);
 }
 void Flash::Update(Time &timeTotal) {

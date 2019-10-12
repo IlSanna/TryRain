@@ -1,7 +1,7 @@
 #include "Thunder.h"
 
 Thunder::Thunder(): m_tile(0,0,32,32) {
-	m_texture.loadFromFile("thunder.png");
+	m_texture.loadFromFile("Image/thunder.png");
 	m_sprite.setTextureRect(m_tile);
 	m_sprite.setTexture(m_texture);
 	m_sprite.setOrigin(16, 16);
