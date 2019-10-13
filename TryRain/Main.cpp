@@ -14,6 +14,7 @@ const int dropsNumber = 100;
 int main()
 {
 	RenderWindow window(VideoMode(SCREEN_X, SCREEN_Y), "Rain",Style::None);
+	
 	//setup audio for the storm
 	SoundBuffer bufferRain;
 	bufferRain.loadFromFile("Audio/rain.ogg");

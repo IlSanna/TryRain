@@ -9,7 +9,7 @@ Rain::Rain() : m_position(Vector2f(-100,-100)) {//costruire con random speed
 -speed;
 */
 void Rain::Init( int screenX, int seed) {
-	m_speed = randomRange(450, 750);
+	m_speed = randomRange(550, 850);
 	m_shape.setSize(Vector2f(3, randomRange(25,m_dropLenght)));
 	m_shape.setPosition(randomRange(0,screenX), -randomRange(0,150));
 }
